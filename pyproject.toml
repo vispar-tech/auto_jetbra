@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "auto-activate-jetbra"
+version = "0.1.0"
+description = ""
+authors = ["Daniil Pavlovich <layred.dota2@mail.ru>"]
+readme = "README.md"
+repository = "https://github.com/vispar-tech/auto_jetbra"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.32.3"
+pre-commit = "^3.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
