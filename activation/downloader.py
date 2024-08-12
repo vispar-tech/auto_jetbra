@@ -61,11 +61,9 @@ def clear_temp(file_path: Path) -> None:
     cleaning up temporary files and directories created during the download process.
 
     Args:
-    ----
         file_path (Path): The path to a file within the temporary directory.
 
     Example:
-    -------
         >>> temp_file = Path("/tmp/tmp12345/file.zip")
         >>> clear_temp(temp_file)
 

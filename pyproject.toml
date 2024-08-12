@@ -18,6 +18,8 @@ beautifulsoup4 = "^4.12.3"
 colorama = "^0.4.6"
 pyperclip = "^1.9.0"
 pyright = "^1.1.375"
+sphinx = "^8.0.2"
+furo = "^2024.8.6"
 
 
 [tool.ruff]
@@ -26,13 +28,13 @@ fix = true
 unsafe-fixes = true
 line-length = 120
 cache-dir = "/tmp/ruff-cache/"
-exclude = ["test.py"]
+exclude = ["docs/"]
 
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = ["D100", "D103", "TRY002", 'T201', 'PGH003', "S603", "S607", "D101", "D211", "D212", "D104"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.flake8-quotes]

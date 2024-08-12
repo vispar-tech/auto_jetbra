@@ -1,9 +1,9 @@
 from colorama import init
 
-from activation import get_mirror_link
 from activation.activate import activate_jetbra
 from activation.downloader import clear_temp, download_jetbra
 from activation.driver import get_driver
+from activation.get_mirror import get_mirror_link
 from activation.ides import show_keys_for_installed_ides
 from activation.message import (
     print_support_message,
