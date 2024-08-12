@@ -4,7 +4,7 @@ import json
 import platform
 from pathlib import Path
 
-import pyperclip
+import pyperclip  # type: ignore
 from colorama import Fore
 
 
@@ -124,7 +124,7 @@ def show_keys_for_installed_ides(keys: dict[str, str]) -> None:
             if 1 <= choice <= len(installed_ides):
                 ide = list(installed_ides.keys())[choice - 1]
                 key = installed_ides[ide]
-                pyperclip.copy(key)
+                pyperclip.copy(key)  # type: ignore
                 print(f"{Fore.GREEN}Key for {ide} copied to clipboard!")
             elif choice == len(installed_ides) + 1:
                 break

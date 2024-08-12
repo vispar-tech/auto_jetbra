@@ -51,7 +51,7 @@ def get_mirror_link(driver: webdriver.Chrome) -> str:
 
         link = None
         for node in nodes:
-            link = node.find_element(By.TAG_NAME, "a").get_attribute("href")
+            link = node.find_element(By.TAG_NAME, "a").get_attribute("href")  # type: ignore
             if link is not None:
                 print(f"{Fore.GREEN}Mirror link found: {link}")
             break

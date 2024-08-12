@@ -38,7 +38,7 @@ def get_driver() -> WebDriver:
     service = Service(ChromeDriverManager().install())
 
     chrome_options = Options()
-    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--headless")  # type: ignore
 
     driver = webdriver.Chrome(service=service, options=chrome_options)
     chrome_version = driver.capabilities.get("browserVersion")  # type: ignore
