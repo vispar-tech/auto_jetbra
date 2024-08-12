@@ -11,6 +11,41 @@ package-mode = false
 python = "^3.11"
 requests = "^2.32.3"
 pre-commit = "^3.8.0"
+selenium = "^4.23.1"
+webdriver-manager = "^4.0.2"
+ruff = "^0.5.7"
+beautifulsoup4 = "^4.12.3"
+colorama = "^0.4.6"
+pyperclip = "^1.9.0"
+pyright = "^1.1.375"
+
+
+[tool.ruff]
+indent-width = 4
+fix = true
+unsafe-fixes = true
+line-length = 120
+cache-dir = "/tmp/ruff-cache/"
+exclude = ["test.py"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = ["D100", "D103", "TRY002", 'T201', 'PGH003', "S603", "S607", "D101", "D211", "D212", "D104"]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "double"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.isort]
+no-lines-before = ["future", "standard-library"]
+known-local-folder = ["app"]
+
+[tool.pyright]
+reportMissingTypeStubs = false
+reportUnknownMemberType = false
 
 
 [build-system]

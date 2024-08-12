@@ -7,25 +7,25 @@ This script automates the activation of JetBrains IDEs using specified mirrors.
 Clone the project
 
 ```bash
-  git clone https://github.com/vispar-tech/auto_jetbra
+git clone https://github.com/vispar-tech/auto_jetbra
 ```
 
 Go to the project directory
 
 ```bash
-  cd auto_jetbra
+cd auto_jetbra
 ```
 
 Install dependencies
 
 ```bash
-  poetry install
+poetry install
 ```
 
 Start the server
 
 ```bash
-  poetry run main.py
+poetry run main.py
 ```
 
 
@@ -33,7 +33,9 @@ Start the server
 
 **Language:** Python
 
-**Libraries:** requests
+**Libraries:** requests, selenium, bs4
+
+**Typecheking:** pyright
 
 
 ## Features
