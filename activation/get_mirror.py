@@ -11,11 +11,34 @@ if TYPE_CHECKING:
 
 
 def get_mirror_link(driver: webdriver.Chrome) -> str:
+    """
+    Retrieves the mirror link for activation from a specified website using Selenium WebDriver.
+
+    This function navigates to a mirror checker website, waits for the results to be loaded,
+    and then finds an available mirror link for activation. The first valid link found is returned.
+
+    Args:
+        driver (webdriver.Chrome): An instance of Selenium WebDriver for Chrome.
+
+    Returns:
+        str: The URL of the mirror link found for activation.
+
+    Raises:
+        Exception: If no online mirror is found or if no valid link is retrieved.
+
+    Example:
+        >>> from selenium import webdriver
+        >>> driver = webdriver.Chrome()
+        >>> mirror_link = get_mirror_link(driver)
+        >>> print(mirror_link)
+    """
     try:
         driver.get("https://3.jetbra.in/")
 
+        # Wait until the results element is present on the page
         WebDriverWait(driver, 10).until(ec.presence_of_element_located((By.ID, "checker.results")))
 
+        # Wait until at least one online mirror is available
         WebDriverWait(driver, 30).until(
             lambda d: len(d.find_elements(By.CSS_SELECTOR, "#checker\\.results div.Node.online")) > 0,
         )

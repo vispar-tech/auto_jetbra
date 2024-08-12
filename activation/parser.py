@@ -9,11 +9,38 @@ from requests import Session, status_codes
 
 
 class MirrorData(TypedDict):
+    """
+    Represents the data structure for parsed mirror information.
+
+    Attributes:
+        download_url (str): The URL to download `jetbra.zip`.
+        keys (dict[str, str]): A dictionary of IDE titles and their license keys.
+    """
+
     download_url: str
     keys: dict[str, str]
 
 
 def parse_jetbra_mirror(mirror_url: str) -> MirrorData:
+    """
+    Parses the JetBra mirror page to extract download URL and IDE keys.
+
+    This function fetches and parses the HTML content from the specified mirror URL. It
+    extracts the download link for `jetbra.zip` and a dictionary of IDE keys from the script tag
+    within the HTML. The IDE keys are mapped to their corresponding titles based on the
+    mirror's content.
+
+    Args:
+        mirror_url (str): The URL of the JetBra mirror page to parse.
+
+    Returns:
+        MirrorData: A dictionary containing the download URL and IDE keys.
+
+    Raises:
+        Exception: If the HTTP request fails or the expected elements are not found in the HTML.
+        TypeError: If the expected types of the parsed elements are incorrect.
+        ValueError: If there is an issue with parsing JSON or finding the necessary script or data.
+    """
     session = Session()
 
     response = session.get(url=mirror_url, timeout=15)
@@ -56,7 +83,7 @@ def parse_jetbra_mirror(mirror_url: str) -> MirrorData:
 
     print(f"{Fore.GREEN}Parsing mirror completed")
 
-    # Match licenses key to ide title
+    # Match licenses key to IDE title
     licenses = {}
 
     articles = soup.find_all("article", class_="card")

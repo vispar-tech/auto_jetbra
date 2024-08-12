@@ -8,6 +8,30 @@ from colorama import Fore
 
 
 def download_jetbra(download_url: str) -> Path:
+    """
+    Download a `jetbra` archive from the specified URL and saves it to a temporary directory.
+
+    This function handles the download of a `jetbra.zip` from the given URL and stores it
+    in a temporary directory. The file is saved with the name derived from the URL's
+    last segment. The function handles errors during the download process and
+    raises an exception if any error occurs.
+
+    Args:
+        download_url (str): The URL of the mirror `jetbra` archive
+
+    Returns:
+        Path: The path to the `jetbra.zip` file.
+
+    Raises:
+        Exception: If an error occurs during the download process.
+
+    Example:
+        >>> download_url = "https://example.com/file.zip"
+        >>> file_path = download_jetbra(download_url)
+        >>> print(file_path)
+        /tmp/tmp12345/file.zip
+
+    """
     try:
         temp_dir = Path(tempfile.mkdtemp())
 
@@ -30,4 +54,20 @@ def download_jetbra(download_url: str) -> Path:
 
 
 def clear_temp(file_path: Path) -> None:
+    """
+    Delete the temporary directory containing the specified file.
+
+    This function removes the parent directory of the given file path, effectively
+    cleaning up temporary files and directories created during the download process.
+
+    Args:
+    ----
+        file_path (Path): The path to a file within the temporary directory.
+
+    Example:
+    -------
+        >>> temp_file = Path("/tmp/tmp12345/file.zip")
+        >>> clear_temp(temp_file)
+
+    """
     shutil.rmtree(file_path.parent)

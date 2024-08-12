@@ -7,8 +7,30 @@ from colorama import Fore
 
 
 def activate_jetbra(file_path: Path) -> None:
+    """
+    Activates JetBrains IDE by running the appropriate installation script based on the operating system.
+
+    This function extracts the JetBrains IDE from a ZIP file and runs the corresponding
+    installation script based on the detected operating system. For macOS, a bash script is executed,
+    and for Windows, the user is prompted to choose between installing for all users or the current user.
+
+    Args:
+        file_path (Path): The path to the ZIP file containing the `jetbra` activation scripts.
+
+    Returns:
+        None
+
+    Raises:
+        FileNotFoundError: If the installation script is not found.
+        subprocess.CalledProcessError: If an error occurs while executing the installation script.
+
+    Example:
+        >>> file_path = Path("/path/to/jetbra.zip")
+        >>> activate_jetbra(file_path)
+    """
     os_type = platform.system()
 
+    # Extract the ZIP file
     extract_dir = file_path.with_suffix("")
     with zipfile.ZipFile(file_path, "r") as zip_ref:
         zip_ref.extractall(extract_dir)
@@ -40,6 +62,7 @@ def activate_jetbra(file_path: Path) -> None:
         print(f"{Fore.RED}Unsupported operating system.")
         return
 
+    # Execute the installation script
     if install_script and install_script.exists():
         try:
             if os_type == "Windows":
