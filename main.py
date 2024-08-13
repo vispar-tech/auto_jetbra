@@ -1,7 +1,7 @@
 from colorama import init
 
 from activation.activate import activate_jetbra
-from activation.downloader import clear_temp, download_jetbra
+from activation.downloader import download_jetbra
 from activation.driver import get_driver
 from activation.get_mirror import get_mirror_link
 from activation.ides import show_keys_for_installed_ides
@@ -25,8 +25,6 @@ def main() -> None:
     downloaded_file_path = download_jetbra(mirror_data["download_url"])
 
     activate_jetbra(downloaded_file_path)
-
-    clear_temp(downloaded_file_path)
 
     show_keys_for_installed_ides(mirror_data["keys"])
     print_support_message()

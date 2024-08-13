@@ -1,6 +1,5 @@
 from __future__ import annotations
 import shutil
-import tempfile
 from pathlib import Path
 
 import requests
@@ -33,7 +32,12 @@ def download_jetbra(download_url: str) -> Path:
 
     """
     try:
-        temp_dir = Path(tempfile.mkdtemp())
+        temp_dir = Path().parent / "downloaded"
+        temp_dir.mkdir(parents=True, exist_ok=True)
+
+        if len(list(temp_dir.iterdir())):
+            shutil.rmtree(temp_dir)
+            temp_dir.mkdir(parents=True, exist_ok=True)
 
         local_filename = temp_dir / download_url.split("/")[-1]
 
@@ -51,21 +55,3 @@ def download_jetbra(download_url: str) -> Path:
         raise
     else:
         return local_filename
-
-
-def clear_temp(file_path: Path) -> None:
-    """
-    Delete the temporary directory containing the specified file.
-
-    This function removes the parent directory of the given file path, effectively
-    cleaning up temporary files and directories created during the download process.
-
-    Args:
-        file_path (Path): The path to a file within the temporary directory.
-
-    Example:
-        >>> temp_file = Path("/tmp/tmp12345/file.zip")
-        >>> clear_temp(temp_file)
-
-    """
-    shutil.rmtree(file_path.parent)

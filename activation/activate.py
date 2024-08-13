@@ -35,6 +35,8 @@ def activate_jetbra(file_path: Path) -> None:
     with zipfile.ZipFile(file_path, "r") as zip_ref:
         zip_ref.extractall(extract_dir)
 
+    file_path.unlink()
+
     install_script = None
     scripts_dir = extract_dir / "jetbra/scripts"
 
@@ -79,6 +81,7 @@ def activate_jetbra(file_path: Path) -> None:
                     stderr=subprocess.DEVNULL,
                     check=True,
                 )
+                subprocess.run(["killall", "Dock"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
             print(f"{Fore.GREEN}Successfully executed: {install_script.name}")
         except subprocess.CalledProcessError as e:
